@@ -1,6 +1,6 @@
 # poke-next
 
-A Next.js App example
+TODO: A Next.js App example
 
 ## Getting Started
 
