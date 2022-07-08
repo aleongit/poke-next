@@ -49,7 +49,7 @@
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
-.grid {
+.list {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +57,20 @@
   max-width: 800px;
 }
 
-.card {
+.grid {
+  display: grid;
+  grid-gap: 10px;
+  /*grid-template-columns: repeat(6, 100px);*/
+  /*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card_list {
+  width: 35%;
+  align-self: center;
+}
+
+.card_grid {
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -87,9 +100,36 @@
   line-height: 1.5;
 }
 
+/*
 @media (max-width: 600px) {
-  .grid {
+  .list {
     width: 100%;
     flex-direction: column;
   }
+}
+*/
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+
+  .card-list {
+    width: 55%;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    }
+  
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+  .card-list {
+    width: 75%;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    }
 }
