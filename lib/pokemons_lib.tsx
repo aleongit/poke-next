@@ -11,7 +11,7 @@ export async function getPokemonsData() {
   const json = await res.json()
   const data = await json.results
   console.log('data a pokemons_lib')
-  console.log(data)
+  //console.log(data)
   return data
 }
 

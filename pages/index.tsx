@@ -10,12 +10,13 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { siteTitle } from "../components/layout";
 import { getPokemonsData, PokemonType } from "../lib/pokemons_lib";
+import { useRouter } from "next/router";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   // ...
   const allPokemonData = await getPokemonsData();
   console.log("allPokemonData");
-  console.log(allPokemonData);
+  //console.log(allPokemonData);
 
   return {
     props: {
@@ -29,6 +30,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
 const Home: NextPage = ({
   allPokemonData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log("a index!");
+  const router = useRouter();
+  const { view } = router.query;
+  console.log(view);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -40,10 +46,17 @@ const Home: NextPage = ({
 
         <p className={styles.description}>Click Pokemon! </p>
 
-        <div >
-          <ul className={styles.grid}>
+        <div>
+          <ul className={view === "list" ? styles.list : styles.grid}>
             {allPokemonData.map((pokemon: PokemonType, index: number) => (
-              <li className={`${styles.card} ${styles.card_grid}`} key={index}>
+              <li
+                className={
+                  view === "list"
+                    ? `${styles.card} ${styles.card_list}`
+                    : `${styles.card} ${styles.card_grid}`
+                }
+                key={index}
+              >
                 {/*
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
