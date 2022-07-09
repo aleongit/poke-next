@@ -1,39 +1,33 @@
-import type {
-  NextPage,
-  GetStaticProps,
-  GetStaticPaths,
-  GetServerSideProps,
-  InferGetStaticPropsType,
-} from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { siteTitle } from "../components/layout";
-import { getPokemonsData, PokemonType } from "../lib/pokemons_lib";
-import { useRouter } from "next/router";
+import type { NextPage, GetStaticProps, InferGetStaticPropsType } from "next"
+import Head from "next/head"
+import Link from "next/link"
+import styles from "../styles/Home.module.css"
+import { siteTitle } from "../components/layout"
+import { getPokemonsData, PokemonListType } from "../lib/pokemons_lib"
+import { useRouter } from "next/router"
 
 export const getStaticProps: GetStaticProps = async (context) => {
   // ...
-  const allPokemonData = await getPokemonsData();
-  console.log("allPokemonData");
-  //console.log(allPokemonData);
+  const allPokemonData = await getPokemonsData()
+  console.log("allPokemonData")
+  //console.log(allPokemonData)
 
   return {
     props: {
       allPokemonData,
     },
-  };
-};
+  }
+}
 
 //export async function getStaticProps() {}
 
 const Home: NextPage = ({
   allPokemonData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("a index!");
-  const router = useRouter();
-  const { view } = router.query;
-  console.log(view);
+  console.log("a index!")
+  const router = useRouter()
+  const { view } = router.query
+  console.log(view)
 
   return (
     <div className={styles.container}>
@@ -48,23 +42,19 @@ const Home: NextPage = ({
 
         <div>
           <ul className={view === "list" ? styles.list : styles.grid}>
-            {allPokemonData.map((pokemon: PokemonType, index: number) => (
-              <li
-                className={
-                  view === "list"
-                    ? `${styles.card} ${styles.card_list}`
-                    : `${styles.card} ${styles.card_grid}`
-                }
-                key={index}
-              >
-                {/*
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
+            {allPokemonData.map((pokemon: PokemonListType, index: number) => (
+              <Link href={`/${pokemon.name}`}>
+                <li
+                  className={
+                    view === "list"
+                      ? `${styles.card} ${styles.card_list}`
+                      : `${styles.card} ${styles.card_grid}`
+                  }
+                  key={index}
+                >
+                  <a>{pokemon.name}</a>
+                </li>
               </Link>
-              <br />
-            */}
-                {pokemon.name}
-              </li>
             ))}
           </ul>
         </div>
@@ -78,4 +68,4 @@ const Home: NextPage = ({
   );
 };
 
-export default Home;
+export default Home

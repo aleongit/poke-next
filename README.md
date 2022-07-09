@@ -5,7 +5,7 @@ A Next.js App example
 - using Layout, component and global CSS, added Tailwind
 - Fetchig API Data
 - Grid/List view with router and url params
-- TODO pokemon detail with Dynamic Routes
+- Pokemon detail with Dynamic Routes
 - TODO pagination
 
 ## Getting Started
