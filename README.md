@@ -6,7 +6,7 @@ A Next.js App example
 - Fetchig API Data
 - Grid/List view with router and url params
 - Pokemon detail with Dynamic Routes
-- TODO pagination
+- TODO: pagination
 
 ## Getting Started
 
